@@ -257,9 +257,9 @@ diff -Naur cronolog-1.6.2/src/cronolog.c cronolog-1.6.2-new/src/cronolog.c
 @@ -137,6 +148,8 @@
      { "link",      	required_argument, 	NULL, 'l' },
      { "period",		required_argument,	NULL, 'p' },
-     { "delay",		required_argument,	NULL, 'd' },
 +    { "set-uid",      	required_argument,     	NULL, 'u' },
 +    { "set-gid",      	required_argument,     	NULL, 'g' },
+     { "delay",		required_argument,	NULL, 'd' },
      { "once-only", 	no_argument,       	NULL, 'o' },
      { "help",      	no_argument,       	NULL, 'h' },
      { "version",   	no_argument,       	NULL, 'V' }
