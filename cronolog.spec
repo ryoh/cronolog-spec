@@ -1,6 +1,6 @@
 Name:            cronolog
 Version:         1.6.2
-Release:         14%{?dist}
+Release:         15%{?dist}.enhanced
 Summary:         Web log rotation program for Apache
 
 Group:           Applications/System
@@ -10,7 +10,16 @@ Source0:         http://cronolog.org/download/%{name}-%{version}.tar.gz
 BuildRoot:       %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires(post):  /sbin/install-info
 Requires(preun): /sbin/install-info
+Conflicts:       cronolog <= 1.6.2-14
 Patch1:          cronolog-largefile.patch
+Patch100:        cronolog-setugid.patch
+Patch101:        cronolog-define-strptime.patch
+Patch102:        cronolog-doc.patch
+Patch103:        cronolog-getopt-long.patch
+Patch104:        cronolog-missing-symlink.patch
+Patch105:        cronolog-sigusr1.patch
+Patch106:        cronolog-strftime.patch
+Patch107:        cronolog-align-usage.patch
 
 %description
 cronolog is a simple filter program that reads log file entries from
@@ -22,7 +31,15 @@ such as Apache, to split the access log into daily or monthly logs.
 
 %prep
 %setup -q
-%patch1
+%patch1 -p0 -b .largefile
+%patch100 -p1 -b .setugid
+%patch101 -p1 -b .define-strptime
+%patch102 -p1 -b .doc
+%patch103 -p1 -b .getopt-long
+%patch104 -p1 -b .missing-symlink
+%patch105 -p0 -b .sigusr1
+%patch106 -p1 -b .strftime
+%patch107 -p1 -b .align-usage
 
 %build
 %configure
@@ -56,6 +73,16 @@ rm -rf %{buildroot}
 %{_infodir}/*
 
 %changelog
+* Sun May 29 2016 "Ryoh Kawai" <kawairyoh@gmail.com> - 1.6.2-15.enhanced
+- Add a few patches.
+- Add setuid, setgid support to cronolog. (cronolog-setugid.patch)
+- Implicit definition of strptime because of missing define #204501
+  (cronolog-define-strptime.patch)
+- Segfaults if an unknown long option is used #204519 (cronolog-doc.patch)
+- Incorrect documentation for previous link long option #204521 (cronolog-get-long.patch)
+- Failed keep symlink to newest log updated #238346 (cronolog-missing-symlink.patch)
+- Fix alignment useage document (cronolog-align-usage.patch)
+
 * Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.6.2-14
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
