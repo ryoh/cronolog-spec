@@ -1,0 +1,16 @@
+--- cronolog-1.6.2/src/cronolog.c.orig	2016-05-29 07:52:13.709069628 +0900
++++ cronolog-1.6.2/src/cronolog.c	2016-05-29 07:52:29.533261156 +0900
+@@ -125,10 +125,10 @@ void  terminate_self(int);
+ 			"                              ( or to standard error if FILE is \"-\")\n" \
+ 			"   -a,        --american         American date formats\n" \
+ 			"   -e,        --european         European date formats (default)\n" \
+-			"   -s,    --start-time=TIME   starting time\n" \
+-			"   -z TZ, --time-zone=TZ      use TZ for timezone\n" \
++			"   -s,        --start-time=TIME   starting time\n" \
++			"   -z TZ,     --time-zone=TZ      use TZ for timezone\n" \
+ 			SETUGID_USAGE \
+-			"   -V,      --version         print version number, then exit\n"
++			"   -V,        --version         print version number, then exit\n"
+ 
+ 
+ /* Definition of the short and long program options */

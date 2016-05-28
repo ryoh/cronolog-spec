@@ -1,0 +1,16 @@
+--- cronolog-1.6.2/src/cronoutils.c	2001-05-03 16:43:21.000000000 +0000
++++ cronolog-1.6.2-patch/src/cronoutils.c	2012-06-12 14:33:15.000000000 +0000
+@@ -195,11 +195,11 @@
+ {
+     struct stat		stat_buf;
+     
+-    if (stat(prevlinkname, &stat_buf) == 0)
++    if (lstat(prevlinkname, &stat_buf) == 0)
+     {
+ 	unlink(prevlinkname);
+     }
+-    if (stat(linkname, &stat_buf) == 0)
++    if (lstat(linkname, &stat_buf) == 0)
+     {
+ 	if (prevlinkname) {
+ 	    rename(linkname, prevlinkname);
