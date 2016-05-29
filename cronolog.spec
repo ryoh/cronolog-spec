@@ -19,7 +19,8 @@ Patch103:        cronolog-getopt-long.patch
 Patch104:        cronolog-missing-symlink.patch
 Patch105:        cronolog-sigusr1.patch
 Patch106:        cronolog-strftime.patch
-Patch107:        cronolog-align-usage.patch
+Patch107:        cronolog-umask.patch
+Patch108:        cronolog-align-usage.patch
 
 %description
 cronolog is a simple filter program that reads log file entries from
@@ -39,7 +40,8 @@ such as Apache, to split the access log into daily or monthly logs.
 %patch104 -p1 -b .missing-symlink
 %patch105 -p0 -b .sigusr1
 %patch106 -p1 -b .strftime
-%patch107 -p1 -b .align-usage
+%patch107 -p0 -b .umask
+%patch108 -p1 -b .align-usage
 
 %build
 %configure
@@ -81,6 +83,7 @@ rm -rf %{buildroot}
 - Segfaults if an unknown long option is used #204519 (cronolog-doc.patch)
 - Incorrect documentation for previous link long option #204521 (cronolog-get-long.patch)
 - Failed keep symlink to newest log updated #238346 (cronolog-missing-symlink.patch)
+- Add umask support to cronolog. (cronolog-umask.patch)
 - Fix alignment useage document (cronolog-align-usage.patch)
 
 * Wed Feb 13 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.6.2-14
